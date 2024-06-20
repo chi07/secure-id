@@ -1,9 +1,10 @@
 package secureid_test
 
 import (
-	secureid "github.com/chi07/secure-id"
 	"strconv"
 	"testing"
+
+	secureid "github.com/chi07/secure-id"
 )
 
 func TestIsSecureID_WithValidID_ReturnsTrue(t *testing.T) {
