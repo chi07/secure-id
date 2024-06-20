@@ -1,4 +1,4 @@
-package secureid
+package main
 
 import (
 	"strconv"
