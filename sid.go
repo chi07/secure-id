@@ -1,4 +1,4 @@
-package main
+package secureid
 
 import (
 	"crypto/rand"
@@ -102,15 +102,4 @@ func IsSecureID(id string, length int) bool {
 	}
 
 	return true
-}
-
-func main() {
-	// test IsSecureID with 10000000 value
-	for i := 0; i < 10000000; i++ {
-		id, _ := NewSID(6)
-		if !IsSecureID(id, 6) {
-			fmt.Println("invalid id")
-		}
-	}
-	fmt.Println("done")
 }
