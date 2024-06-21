@@ -1,31 +1,33 @@
-package secureid
+package secureid_test
 
 import (
 	"strconv"
 	"testing"
+
+	secureid "github.com/chi07/secure-id"
 )
 
 func TestIsSecureID_WithValidID_ReturnsTrue(t *testing.T) {
-	id, _ := NewSID(10)
-	if !IsSecureID(id, 10) {
+	id, _ := secureid.NewSID(10)
+	if !secureid.IsSecureID(id, 10) {
 		t.Errorf("Expected IsSecureID to return true for valid ID, got false")
 	}
 }
 
 func TestIsSecureID_WithInvalidLength_ReturnsFalse(t *testing.T) {
-	if IsSecureID("12345", 10) {
+	if secureid.IsSecureID("12345", 10) {
 		t.Errorf("Expected IsSecureID to return false for ID of incorrect length, got true")
 	}
 }
 
 func TestIsSecureID_WithInvalidCharacters_ReturnsFalse(t *testing.T) {
-	if IsSecureID("abcdeabcde", 10) {
+	if secureid.IsSecureID("abcdeabcde", 10) {
 		t.Errorf("Expected IsSecureID to return false for ID with invalid characters, got true")
 	}
 }
 
 func TestIsSecureID_WithEmptyString_ReturnsFalse(t *testing.T) {
-	if IsSecureID("", 10) {
+	if secureid.IsSecureID("", 10) {
 		t.Errorf("Expected IsSecureID to return false for empty string, got true")
 	}
 }
@@ -38,7 +40,7 @@ func BenchmarkGenerateSecureID(b *testing.B) {
 	for _, length := range lengths {
 		b.Run("Length"+strconv.Itoa(length), func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				_, err := NewSID(length)
+				_, err := secureid.NewSID(length)
 				if err != nil {
 					b.Fatal("generateSecureID failed:", err)
 				}
